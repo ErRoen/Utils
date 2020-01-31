@@ -154,3 +154,6 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+/Utils/.vs/Utils/v16
+/Utils/packages/Newtonsoft.Json.12.0.3
+/.vs
