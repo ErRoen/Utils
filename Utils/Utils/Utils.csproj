@@ -34,6 +34,7 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,15 +43,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Templates\Disposable\IDisposable.cs" />
     <Compile Include="ExceptionHelper.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\DecimalExtensions.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="Extensions\JsonExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\XmlExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Templates\Singleton\LazySingleton.cs" />
+    <Compile Include="Templates\Strategy\Strategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Templates\Disposable\IDisposable.snippet" />
+    <None Include="Templates\ReadMe.md" />
+    <None Include="Templates\Singleton\LazySingleton.snippet" />
+    <None Include="Templates\Strategy\Strategy.snippet" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

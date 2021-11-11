@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Shortcut>idispo</Shortcut>
+      <Title>IDisposable pattern</Title>
+      <Author>ErR</Author>
+      <Description>Code Snippet for a class that implements IDisposable</Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>idispo</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>someDisposableType</ID>
+          <ToolTip>The IDisposable field type</ToolTip>
+          <Default>IDisposable</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>someDisposableFieldName</ID>
+          <ToolTip>The IDisposable field name</ToolTip>
+          <Default>disposable</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>className</ID>
+          <ToolTip>Class name</ToolTip>
+          <Default>MyDisposable</Default>
+          <Function>ClassName()</Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp" Delimiter="$" Kind="type decl"><![CDATA[public class $className$ : IDisposable
+{
+  private readonly $someDisposableType$ _$someDisposableFieldName$ = new $someDisposableType$();
+
+  public $className$ ($someDisposableType$ $someDisposableFieldName$)
+  {
+    _$someDisposableFieldName$ = $someDisposableFieldName$;
+  }
+
+  #region IDisposable
+
+  private bool _disposed;
+  ~$className$() => Dispose();
+
+  public void Dispose()
+  {
+    Dispose(true);
+    GC.SuppressFinalize(this);
+  }
+
+  protected virtual void Dispose(bool disposing)
+  {
+    if (_disposed)
+      return;
+
+    if (disposing) 
+      _$someDisposableFieldName$?.Dispose();
+
+    _disposed = true;
+  }
+
+  #endregion IDisposable
+}]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

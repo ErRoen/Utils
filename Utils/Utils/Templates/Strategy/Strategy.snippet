@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>Strategy</Title>
+      <Author>
+      </Author>
+      <Description>
+      </Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>strat</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="false">
+          <ID>StrategyName</ID>
+          <ToolTip>Strategy</ToolTip>
+          <Default>Strategy</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp" Delimiter="$"><![CDATA[    public interface I$StrategyName$
+    {
+        void SomeMethod(object paramOne, object paramTwo);
+        void SomeOtherMethod(object paramOne, object paramTwo);
+    }
+
+    // Allows for default/shared logic to be available to all concrete classes
+    public abstract class AbstractConcrete$StrategyName$ : I$StrategyName$
+    {
+        public void SomeMethod(object paramOne, object paramTwo)
+        {
+            // Some shared implementation
+        }
+
+        // No default, MUST be implemented in concrete classes
+        public abstract void SomeOtherMethod(object paramOne, object paramTwo);
+    }
+
+    public class Default$StrategyName$ : I$StrategyName$
+    {
+        public void SomeMethod(object paramOne, object paramTwo) { throw new NotImplementedException(); }
+        public void SomeOtherMethod(object paramOne, object paramTwo) { throw new NotImplementedException(); }
+    }
+
+    public class Concrete$StrategyName$ : AbstractConcrete$StrategyName$
+    {
+        public override void SomeOtherMethod(object paramOne, object paramTwo) { throw new NotImplementedException(); }
+    }
+
+    public class AnotherConcrete$StrategyName$ : I$StrategyName$
+    {
+        public void SomeMethod(object paramOne, object paramTwo) { throw new NotImplementedException(); }
+        public void SomeOtherMethod(object paramOne, object paramTwo) { throw new NotImplementedException(); }
+    }
+
+
+    public class $StrategyName$Factory
+    {
+        public Dictionary<object, Lazy<I$StrategyName$>> $StrategyName$s = new Dictionary<object, Lazy<I$StrategyName$>>();
+        private readonly I$StrategyName$ _default$StrategyName$ = new Lazy<I$StrategyName$>(() => new Default$StrategyName$()).Value;
+
+        public $StrategyName$Factory()
+        {
+            $StrategyName$s.Add(new object(), new Lazy<I$StrategyName$>(() => new Concrete$StrategyName$()));
+            $StrategyName$s.Add(new object(), new Lazy<I$StrategyName$>(() => new AnotherConcrete$StrategyName$()));
+            //  Add more concrete I$StrategyName$ here.
+        }
+
+        public I$StrategyName$ Get$StrategyName$(Guid key)
+        {
+            return $StrategyName$s.TryGetValue(key, out var output)
+                ? output.Value
+                : _default$StrategyName$;
+        }
+    }]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
