@@ -58,11 +58,10 @@ namespace Utils.Extensions
             }
         }
 
-        public static IEnumerable<T> ToEnumerable<T>(this T @object)
+        public static IEnumerable<T> Yield<T>(this T input)
         {
-            yield return @object;
+            yield return input;
         }
-
 
         public static async Task<IEnumerable<T>> WhenAll<T>(this IEnumerable<Task<T>> tasks)
         {
